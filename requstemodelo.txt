@@ -1,0 +1,25 @@
+
+https://localhost:8080api/event?title=Frontin Sampa&description=primeiro teste&evenUrl=https://frontinsampa.com.br/&image=frontin.jpeg&date=1718030431&remote=false&city=São Paulo&uf=SP
+
+
+[{"key":"title","value":"Frontin Sampa"},
+"description":null,"type":"text","enabled":true,"equals":true},
+{"key":"description","value":"primeiro teste","description":null,"type":"text","enabled":true,"equals":true},
+{"key":"evenUrl","value":"https://frontinsampa.com.br/","description":null,"type":"text","enabled":true,"equals":true},
+{"key":"image","value":"frontin.jpeg","description":null,"type":"text","enabled":true,"equals":true},
+{"key":"date","value":"1718030431","description":null,"type":"text","enabled":true,"equals":true},
+{"key":"remote","value":"false","description":null,"type":"text","enabled":true,"equals":true},
+{"key":"city","value":"São Paulo","description":null,"type":"text","enabled":true,"equals":true},
+{"key":"uf","value":"SP","description":null,"type":"text","enabled":true,"equals":true}]
+
+
+{
+"title": "Frontin Sampa",
+"description": "primeiro teste",
+"evenUrl": "https://frontinsampa.com.br/",
+"image": "frontin.jpeg"
+"date": "1718030431",
+"remote": "false",
+"city": "São Paulo",
+"uf": "SP"
+}
