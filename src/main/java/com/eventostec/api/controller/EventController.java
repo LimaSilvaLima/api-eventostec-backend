@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.eventostec.api.domain.event.Event;
 import com.eventostec.api.domain.event.EventRequestDTO;
-import com.eventostec.api.domain.service.EventService;
+import com.eventostec.api.service.EventService;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,4 +1,4 @@
-package com.eventostec.api.domain.service;
+package com.eventostec.api.service;
 
 import java.io.File;
 import java.io.FileOutputStream;
