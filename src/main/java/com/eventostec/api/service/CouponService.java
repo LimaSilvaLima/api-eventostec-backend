@@ -37,6 +37,6 @@ public class CouponService {
     }
 
     public List<Coupon> consultCoupons(UUID eventId, Date currentDate) {
-        //return couponRepository.findByEventIdAndValidAfter(eventId, currentDate);
+        return couponRepository.findByEventIdAndValidAfter(eventId, currentDate);
     }
 }
