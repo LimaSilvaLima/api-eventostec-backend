@@ -7,12 +7,10 @@ import java.sql.Date;
 import java.util.List;
 import java.util.UUID;
 
-import org.springdoc.core.converters.models.Pageable;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,12 +19,15 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.eventostec.api.domain.event.Event;
 import com.eventostec.api.domain.event.EventRequestDTO;
 import com.eventostec.api.domain.event.EventResponseDTO;
+import com.eventostec.api.domain.repositories.EventRepository;
 
 @Service
 public class EventService {
 
     @Autowired 
     private AmazonS3 s3Client;
+    //private final EventRepository repository;
+
     public Event createEvent(EventRequestDTO data){
         
        String imgUrl = null;
@@ -41,6 +42,8 @@ public class EventService {
        newEvent.setDate(new Date(data.date()));
        newEvent.setImgUrl(imgUrl);
        newEvent.setRemote(data.remote());
+
+       repository.save(newEvent);
 
        return newEvent;
       
@@ -75,6 +78,17 @@ public class EventService {
     public List<EventResponseDTO> getEvents(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10")int size){
         Pageable pageable = PageRequest.of(page, size);
         Page<Event> eventsPage = this.repository.findAll(pageable);
-        
+        return eventsPage.map(event -> new EventResponseDTO(
+                        event.getId(),
+                        event.getTitle(),
+                        event.getDescription(),
+                        event.getDate(),
+                         "",
+                         "",
+                        event.getRemote(),
+                        event.getEventUrl(),
+                        event.getImgUrl())
+                )
+                .stream().toList();
     }
 }
