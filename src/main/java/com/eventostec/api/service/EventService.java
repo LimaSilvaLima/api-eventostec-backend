@@ -3,15 +3,17 @@ package com.eventostec.api.service;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.Date;
+
 import java.util.List;
 import java.util.UUID;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -75,9 +77,11 @@ public class EventService {
         return convFile;
     }
 
-    public List<EventResponseDTO> getEvents(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10")int size){
+    @GetMapping
+    public List<EventResponseDTO> getUpcomingEvents(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10")int size){
         Pageable pageable = PageRequest.of(page, size);
-        Page<Event> eventsPage = this.repository.findAll(pageable);
+        
+        Page<Event> eventsPage = this.repository.findUpcomingEvents(new Date() , pageable);
         return eventsPage.map(event -> new EventResponseDTO(
                         event.getId(),
                         event.getTitle(),
